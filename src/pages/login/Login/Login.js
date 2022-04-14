@@ -54,6 +54,7 @@ const Login = () => {
                     Login
                 </Button>
             </Form>
+            <h2>Hello from car</h2>
             <p>New to Genius car? <Link to='/register' className='text-danger' onClick={navigateRegister}>Please Register</Link> </p>
         </div>
     );
