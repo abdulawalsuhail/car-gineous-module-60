@@ -29,11 +29,6 @@ const Experts = () => {
                     ></Expert>)
                 }
             </div>
-            <div>
-                <p>
-                    <h3>Resolved</h3>
-                </p>
-            </div>
         </div>
     );
 };
