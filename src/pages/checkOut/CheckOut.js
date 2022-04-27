@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import useServiceDetails from '../../hooks/useServiceDetails'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const CheckOut = () => {
@@ -26,16 +28,24 @@ const CheckOut = () => {
     //     console.log(newUser);
     //     setUser(newUser);
     // }
-const handlePlaceOrder=e=>{
-    e.preventDefault()
-    const order = {
-        email:user.email,
-        service: service.name,
-        serviceId: serviceId,
-        address: event.target.address.value,
-        phone: event.target.phone.value
+    const handlePlaceOrder = e => {
+        e.preventDefault()
+        const order = {
+            email: user.email,
+            service: service.name,
+            serviceId: serviceId,
+            address: e.target.address.value,
+            phone: e.target.phone.value
+        }
+        axios.post('http://localhost:5000/order', order)
+            .then(response => {
+                const { data } = response;
+                if (data.insertedId) {
+                    toast('Your order is booked!!!');
+                    e.target.reset();
+                }
+            })
     }
-}
 
 
     return (
